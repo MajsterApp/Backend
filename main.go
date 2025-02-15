@@ -1,19 +1,23 @@
 package main
 
 import (
-	"github.com/MajsterApp/Backend/application"
 	"context"
-	"fmt"
+	"log"
+
+	"github.com/MajsterApp/Backend/application"
+	"github.com/MajsterApp/Backend/db"
 )
 
 func main() {
-    app := application.New();
-    err := app.Start(context.TODO())
-    if err != nil {
-        fmt.Println("failed to Start app: %w", err)
-    }
+	app := application.New()
 
-    fmt.Println("Serv runnig on localhosr:3000")
+    db.InitDB()
+	defer db.DB.Close()
+	if err := app.Start(context.TODO()); err != nil {
+		log.Fatalf("Failed to start app: %v", err)
+	}
+
+
+	log.Println("Server running on localhost:3000")
 }
-
 
