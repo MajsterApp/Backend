@@ -8,6 +8,7 @@ import (
 
 	"github.com/MajsterApp/Backend/db"
 	"github.com/lib/pq"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const sqlStatement = `
@@ -36,7 +37,12 @@ func RegisterFunc(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = conn.Exec(sqlStatement, rq.Email, rq.Name, rq.Surname, rq.Password, rq.Region, pq.Array(rq.Jobs), rq.Role)
+    hash, err := bcrypt.GenerateFromPassword([]byte(rq.Password), bcrypt.DefaultCost)
+    if err != nil {
+        log.Printf("Can't hash the password: %v", err);
+    }
+
+	_, err = conn.Exec(sqlStatement, rq.Email, rq.Name, rq.Surname, string(hash), rq.Region, pq.Array(rq.Jobs), rq.Role)
 	if err != nil {
 		log.Printf("Database error: %v", err)
 		http.Error(w, "Failed to insert data into the database", http.StatusInternalServerError)

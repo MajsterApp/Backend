@@ -20,4 +20,3 @@ func main() {
 
 	log.Println("Server running on localhost:3000")
 }
-
