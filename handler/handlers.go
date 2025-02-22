@@ -12,7 +12,9 @@ func (o *Order) Login(w http.ResponseWriter, r *http.Request) {
 func (o *Order) Register(w http.ResponseWriter, r *http.Request) {
     RegisterFunc(w, r)
 }
-// func (o *Order) Read(w http.ResponseWriter, r *http.Request) {
+func (o *Order) UserData(w http.ResponseWriter, r *http.Request) {
+    UserData(w, r)
+}
 //
 //     fmt.Println("Read handler")
 // }
