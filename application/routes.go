@@ -15,14 +15,20 @@ func loadRoutes() *chi.Mux {
     router := chi.NewRouter();
     router.Use(middleware.Logger);
     router.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:5173"},
+		AllowedOrigins:   []string{"https://majsterapp.netlify.app"},
         AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
     router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-        w.WriteHeader(http.StatusOK);
-    })
+    if r.Method == http.MethodHead {
+        w.WriteHeader(http.StatusOK)
+        return
+    }
+    w.WriteHeader(http.StatusOK)
+    w.Write([]byte("Welcome to MajsterApp API"))
+})
+
     router.Route("/api/v1", loadHandlerRoutes)
 
     return router;

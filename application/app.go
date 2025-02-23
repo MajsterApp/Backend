@@ -1,9 +1,10 @@
 package application
 
 import (
-	"context"
-	"fmt"
-	"net/http"
+    "context"
+    "fmt"
+    "net/http"
+    "os"
 )
 
 type App struct {
@@ -11,25 +12,26 @@ type App struct {
 }
 
 func New() *App {
-    app := &App{
+    return &App{
         router: loadRoutes(),
     }
-
-    return app;
 }
 
 func (a *App) Start(ctx context.Context) error {
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "3000" // Default to 3000 if not set
+    }
+
     server := &http.Server{
-        Addr: ":3000",
+        Addr:    ":" + port,
         Handler: a.router,
     }
 
-
-    fmt.Println("Server is running on localhost:3000")
-    err := server.ListenAndServe();
+    err := server.ListenAndServe()
     if err != nil {
-        return fmt.Errorf("Failed to Start server: %w", err)
+        return fmt.Errorf("failed to start server: %w", err)
     }
-    return nil;
+    return nil
 }
 
