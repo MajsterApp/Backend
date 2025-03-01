@@ -20,7 +20,7 @@ func New() *App {
 func (a *App) Start(ctx context.Context) error {
     port := os.Getenv("PORT")
     if port == "" {
-        port = "3000" // Default to 3000 if not set
+        port = "3000"
     }
 
     server := &http.Server{

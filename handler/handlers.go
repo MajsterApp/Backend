@@ -15,6 +15,10 @@ func (o *Order) Register(w http.ResponseWriter, r *http.Request) {
 func (o *Order) UserData(w http.ResponseWriter, r *http.Request) {
     UserData(w, r)
 }
+
+func (o *Order) Verification(w http.ResponseWriter, r *http.Request) {
+    Verification(w, r)
+}
 //
 //     fmt.Println("Read handler")
 // }

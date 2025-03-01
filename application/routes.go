@@ -15,7 +15,7 @@ func loadRoutes() *chi.Mux {
     router := chi.NewRouter();
     router.Use(middleware.Logger);
     router.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"https://majsterapp.netlify.app"},
+        AllowedOrigins:   []string{"https://majsterapp.netlify.app", "https://localhost:5173"},
         AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 		AllowCredentials: true,
@@ -40,6 +40,7 @@ func loadHandlerRoutes(router chi.Router) {
     router.Post("/login", Handler.Login);
     router.Post("/register", Handler.Register);
     router.Get("/userData", Handler.UserData);
+    router.Get("/verification", Handler.Verification)
 
 }
 
