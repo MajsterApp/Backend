@@ -41,6 +41,6 @@ func loadHandlerRoutes(router chi.Router) {
     router.Post("/register", Handler.Register);
     router.Get("/userData", Handler.UserData);
     router.Get("/verification", Handler.Verification)
-
+    router.Post("/change-password", Handler.PasswordChange)
 }
 
