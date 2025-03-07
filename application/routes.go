@@ -37,10 +37,12 @@ func loadRoutes() *chi.Mux {
 
 func loadHandlerRoutes(router chi.Router) {
     Handler := &handler.Order{}
-    router.Post("/login", Handler.Login);
-    router.Post("/register", Handler.Register);
-    router.Get("/userData", Handler.UserData);
-    router.Get("/verification", Handler.Verification)
-    router.Post("/change-password", Handler.PasswordChange)
+    router.Post("/login", Handler.LoginHandler);
+    router.Post("/token", Handler.CreateTokenHandler);
+    router.Post("/register", Handler.RegisterHandler);
+    router.Get("/userData", Handler.UserDataHandler);
+    router.Get("/verification", Handler.VerificationHandler)
+    router.Post("/change-password", Handler.PasswordChangeHandler)
+    router.Get("/cities", Handler.GetCitiesHandler)
 }
 
