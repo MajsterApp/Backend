@@ -2,7 +2,7 @@ package handler
 
 import (
 	"net/http"
-    // "github.com/MajsterApp/Backend/api"
+    "github.com/MajsterApp/Backend/handler/email"
 
 )
 
@@ -31,6 +31,9 @@ func (o *Order) CreateTokenHandler(w http.ResponseWriter, r *http.Request) {
 }
 func (o *Order) GetCitiesHandler(w http.ResponseWriter, r *http.Request) {
     GetCities(w, r)
+}
+func (o *Order) SendEmail(w http.ResponseWriter, r *http.Request) {
+    email.Send(w, r)
 }
 // func (o *Order) FetchCities(w http.ResponseWriter, r *http.Request) {
 //     api.FetchCities(w, r)

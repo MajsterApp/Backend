@@ -10,4 +10,7 @@ require (
 
 require github.com/golang-jwt/jwt/v5 v5.2.1
 
-require github.com/go-chi/cors v1.2.1 // indirect
+require (
+	github.com/go-chi/cors v1.2.1 // indirect
+	github.com/resend/resend-go/v2 v2.15.0 // indirect
+)

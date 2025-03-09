@@ -44,5 +44,6 @@ func loadHandlerRoutes(router chi.Router) {
     router.Get("/verification", Handler.VerificationHandler)
     router.Post("/change-password", Handler.PasswordChangeHandler)
     router.Get("/cities", Handler.GetCitiesHandler)
+    router.Post("/sendEmail", Handler.SendEmail)
 }
 
