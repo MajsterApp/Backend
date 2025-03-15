@@ -26,7 +26,6 @@ func LoadPlacesFromFile(filename string) error {
 
 	cities = data.Cities
 
-
 	return nil
 }
 
@@ -37,7 +36,6 @@ func GetCities(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	var filtered []string
 	for _, city := range cities {
 		if strings.HasPrefix(strings.ToLower(city), strings.ToLower(query)) {
@@ -45,8 +43,6 @@ func GetCities(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string][]string{"cities": filtered})
 }
-

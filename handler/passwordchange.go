@@ -12,14 +12,14 @@ import (
 
 func PasswordChange(w http.ResponseWriter, r *http.Request) {
 
-    var rq struct {
-        Password string `json:"password"`
-    }
-    err := json.NewDecoder(r.Body).Decode(&rq)
-    if err != nil {
-        http.Error(w, "wrong request", http.StatusUnauthorized)
-        return
-    }
+	var rq struct {
+		Password string `json:"password"`
+	}
+	err := json.NewDecoder(r.Body).Decode(&rq)
+	if err != nil {
+		http.Error(w, "wrong request", http.StatusUnauthorized)
+		return
+	}
 
 	hash, err := bcrypt.GenerateFromPassword([]byte(rq.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -64,4 +64,3 @@ func PasswordChange(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Hasło zmienione pomyślnie"})
 }
-

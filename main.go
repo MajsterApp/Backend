@@ -10,16 +10,15 @@ import (
 )
 
 func main() {
-    if err := handler.LoadPlacesFromFile("assets/cities.json"); err != nil {
+	if err := handler.LoadPlacesFromFile("assets/cities.json"); err != nil {
 		log.Fatal("Error loading cities:", err)
 	}
 	app := application.New()
 
-    db.InitDB()
+	db.InitDB()
 	defer db.DB.Close()
 	if err := app.Start(context.TODO()); err != nil {
 		log.Fatalf("Failed to start app: %v", err)
 	}
-
 
 }
