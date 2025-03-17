@@ -19,7 +19,7 @@ func Send(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "bad Request", http.StatusUnauthorized)
 	}
-	apiKey := "re_2Z87ZAAf_FAKzLsG976yeCvw5YSaNCSGt"
+	apiKey := "re_XXShQEzM_CY3F3zEtjUmZdPoTh5nVmtxK"
 
 	client := resend.NewClient(apiKey)
 
